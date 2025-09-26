@@ -2,6 +2,7 @@
   "name": "git-extensions",
   "displayName": "git-extensions",
   "description": "Provide additional git capabilities",
+  "publisher": "MohammadHammad1796",
   "version": "1.0.0",
   "engines": {
     "vscode": ">=1.76.2"
