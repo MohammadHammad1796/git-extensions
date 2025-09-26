@@ -1,6 +1,6 @@
 {
-  "name": "extended-git",
-  "displayName": "git-extensions",
+  "name": "extended-git-functionalities",
+  "displayName": "extended-git-functionalities",
   "description": "Provide additional git capabilities",
   "publisher": "MohammadHammad1796",
   "version": "1.0.0",

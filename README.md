@@ -1,8 +1,8 @@
-# Git Extensions
+# Extended Git Functionalities
 
 ![Icon](images/icon.png)
 
-**Git Extensions** is a Visual Studio Code extension that enhances the Git workflow inside the **Source Control panel**.  
+**Extended Git Functionalities** is a Visual Studio Code extension that enhances the Git workflow inside the **Source Control panel**.  
 Currently, it provides a convenient way to **compare two different files** directly from the Git changes view.
 
 ---
