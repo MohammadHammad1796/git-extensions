@@ -37,7 +37,7 @@ This functionality works with **changed, added, or deleted files** in Git.
 
 ## 🚀 Installation
 
-1. Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/) (coming soon).  
+1. Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=MohammadHammad1796.extended-git-functionalities).  
 2. Or install manually:
    - Download the `.vsix` file  
    - In VS Code, open the **Command Palette** (`Ctrl+Shift+P`)  
