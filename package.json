@@ -2,22 +2,51 @@
   "name": "git-extensions",
   "displayName": "git-extensions",
   "description": "Provide additional git capabilities",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
-    "vscode": "^1.104.0"
+    "vscode": ">=1.76.2"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "*"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "git-extensions.helloWorld",
-        "title": "Hello World"
+        "command": "extension.selectForCompare",
+        "title": "Select for Compare"
+      },
+      {
+        "command": "extension.deSelectForCompare",
+        "title": "DeSelect for Compare"
+      },
+      {
+        "command": "extension.compareWithSelected",
+        "title": "Compare with Selected"
       }
-    ]
+    ],
+    "menus": {
+      "scm/resourceState/context": [
+        {
+          "command": "extension.selectForCompare",
+          "when": "extension.showSelectForCompare",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.deSelectForCompare",
+          "when": "extension.showDeSelectForCompare",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.compareWithSelected",
+          "when": "extension.showCompareWithSelected",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

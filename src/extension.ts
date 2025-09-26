@@ -1,26 +1,111 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+let firstSelected: vscode.Uri | null = null;
+
 export function activate(context: vscode.ExtensionContext) {
+  vscode.commands.executeCommand(
+    "setContext",
+    "extension.showSelectForCompare",
+    true
+  );
+  vscode.commands.executeCommand(
+    "setContext",
+    "extension.showDeSelectForCompare",
+    false
+  );
+  vscode.commands.executeCommand(
+    "setContext",
+    "extension.showCompareWithSelected",
+    false
+  );
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "git-extensions" is now active!');
+  // Select for Compare
+  const selectForCompare = vscode.commands.registerCommand(
+    "extension.selectForCompare",
+    (resource: any) => {
+      firstSelected = resource.resourceUri;
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showSelectForCompare",
+        false
+      );
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showDeSelectForCompare",
+        true
+      );
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showCompareWithSelected",
+        true
+      );
+    }
+  );
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('git-extensions.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from git-extensions!');
-	});
+  // DeSelect for Compare
+  const deSelectForCompare = vscode.commands.registerCommand(
+    "extension.deSelectForCompare",
+    (resource: any) => {
+      firstSelected = null;
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showSelectForCompare",
+        true
+      );
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showDeSelectForCompare",
+        false
+      );
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showCompareWithSelected",
+        false
+      );
+    }
+  );
 
-	context.subscriptions.push(disposable);
+  // Compare with Selected
+  const compareWithSelected = vscode.commands.registerCommand(
+    "extension.compareWithSelected",
+    (resource: any) => {
+      const secondUri = resource.resourceUri;
+      if (firstSelected === secondUri) {
+        vscode.window.showErrorMessage("Can not compare same file");
+        return;
+      }
+      vscode.commands.executeCommand(
+        "vscode.diff",
+        firstSelected,
+        secondUri,
+        `Compare: ${firstSelected!.fsPath} ↔ ${secondUri.fsPath}`
+      );
+      firstSelected = null; // reset
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showSelectForCompare",
+        true
+      );
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showDeSelectForCompare",
+        false
+      );
+      vscode.commands.executeCommand(
+        "setContext",
+        "extension.showCompareWithSelected",
+        false
+      );
+    }
+  );
+
+  context.subscriptions.push(
+    selectForCompare,
+    deSelectForCompare,
+    compareWithSelected
+  );
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+  firstSelected = null;
+}
