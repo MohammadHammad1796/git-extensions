@@ -1,71 +1,79 @@
-# git-extensions README
+# Git Extensions
 
-This is the README for your extension "git-extensions". After writing up a brief description, we recommend including the following sections.
+![Icon](images/icon.png)
 
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+**Git Extensions** is a Visual Studio Code extension that enhances the Git workflow inside the **Source Control panel**.  
+Currently, it provides a convenient way to **compare two different files** directly from the Git changes view.
 
 ---
 
-## Following extension guidelines
+## ✨ Features
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+- **Select for Compare**: Right-click a file in the Git panel and mark it for comparison.  
+- **Compare with Selected**: Choose another file and compare it with the previously selected file.  
+- **DeSelect for Compare**: Cancel the selection if you change your mind.  
+- Integrated into the **Source Control context menu** (no need to go through File Explorer).  
+- Prevents comparing the same file by mistake.  
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+This functionality works with **changed, added, or deleted files** in Git.
 
-## Working with Markdown
+---
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+## 📸 Demo
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+1. Right-click a file in the **Source Control panel** → `Select for Compare`.  
+2. Right-click another file → `Compare with Selected`.  
+3. The built-in VS Code **diff editor** opens, showing differences side by side.  
+4. Use `DeSelect for Compare` if you want to reset your choice.  
 
-## For more information
+---
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+## 🔧 Requirements
 
-**Enjoy!**
+- VS Code **1.76.2 or higher**
+- Git enabled in your workspace
+
+---
+
+## 🚀 Installation
+
+1. Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/) (coming soon).  
+2. Or install manually:
+   - Download the `.vsix` file  
+   - In VS Code, open the **Command Palette** (`Ctrl+Shift+P`)  
+   - Run `Extensions: Install from VSIX...` and select the file  
+
+---
+
+## ⚙️ Extension Settings
+
+No additional configuration is required.  
+
+---
+
+## 📌 Known Issues
+
+- Only supports comparing **two files at a time**.  
+- After a comparison, the selection resets automatically.  
+
+---
+
+## 🛠️ Contributing
+
+Contributions are welcome!  
+- Fork the repo on [GitHub](https://github.com/MohammadHammad1796/git-extensions)  
+- Submit issues and PRs for new Git features (merge tools, stash helpers, etc.)  
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 📚 Release Notes
+
+### 1.0.0
+- Initial release
+- Added support for comparing two files from the Git Source Control panel
