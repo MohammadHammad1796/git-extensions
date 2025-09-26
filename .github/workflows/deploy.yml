@@ -1,0 +1,31 @@
+name: Release VS Code Extension
+
+on:
+  push:
+    tags:
+      - "v*.*.*"   # Trigger only when you push a version tag like v0.1.0
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.13.1
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build extension
+        run: npm run compile --if-present
+
+      - name: Package extension
+        run: npx @vscode/vsce package
+
+      - name: Publish to Marketplace
+        run: npx @vscode/vsce publish -p ${{ secrets.VSCE_TOKEN }}
